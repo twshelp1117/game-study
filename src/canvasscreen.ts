@@ -43,6 +43,6 @@ export class CanvasScreen {
   public updateDisp() {
     // this.display.resetTransform();
     this.display.drawImage(this.buffer.canvas, 0, 0);
-    this.clearBuffer();
+    // this.clearBuffer();
   }
 }
