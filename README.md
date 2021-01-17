@@ -1,3 +1,3 @@
 # game-study
 
-[demo]()
+[demo](https://twshelp1117.github.io/game-study/)
