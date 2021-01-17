@@ -1,0 +1,22 @@
+body {
+  background-color: #999;
+}
+
+#game {
+  background-color: #000 !important;
+  user-select: none;
+  image-rendering: pixelated;
+  border: none;
+  outline: 0;
+}
+
+.full {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  margin: 0;
+  padding: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: contain;
+}
