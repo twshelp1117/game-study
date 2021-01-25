@@ -8,6 +8,7 @@ body {
   image-rendering: pixelated;
   border: none;
   outline: 0;
+  object-fit: contain;
 }
 
 .full {
@@ -18,5 +19,4 @@ body {
   padding: 0;
   width: 100vw !important;
   height: 100vh !important;
-  object-fit: contain;
 }

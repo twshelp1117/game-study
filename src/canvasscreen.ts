@@ -3,8 +3,12 @@ export class CanvasScreen {
   private buffer: CanvasRenderingContext2D;
   constructor(width: number, height: number, context?: CanvasRenderingContext2D) {
     // コピーor生成
-    if (context) this.display = context;
-    else this.display = document.createElement("canvas").getContext("2d");
+    if (context) {
+      this.display = context;
+    } else {
+      this.display = document.createElement("canvas").getContext("2d");
+      document.body.appendChild(this.display.canvas);
+    }
 
     // チェック
     width = width <= 0 ? 100 : width;
@@ -28,8 +32,6 @@ export class CanvasScreen {
     // きれいにしておこうね
     this.clearBuffer();
     this.updateDisp();
-    // 貼り付ける
-    if (!context) document.body.appendChild(this.display.canvas);
   }
   public get(select: "buffer" | "display") {
     return select == "buffer" ? this.buffer : this.display;
