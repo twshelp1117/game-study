@@ -2,7 +2,7 @@ body {
   background-color: #999;
 }
 
-#game {
+.game {
   background-color: #000 !important;
   user-select: none;
   image-rendering: pixelated;

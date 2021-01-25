@@ -37,7 +37,7 @@ export class CanvasScreen {
     return select == "buffer" ? this.buffer : this.display;
   }
 
-  private clearBuffer() {
+  public clearBuffer() {
     this.buffer.resetTransform();
     this.buffer.fillStyle = "#fff";
     this.buffer.fillRect(0, 0, this.buffer.canvas.width, this.buffer.canvas.height);
