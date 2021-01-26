@@ -1,3 +1,3 @@
 # game-study
 
-[demo](https://tws1117.github.io/game-study/)
+[demo](https://konjacdesert5289.github.io/game-study/)
