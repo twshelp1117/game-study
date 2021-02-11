@@ -4,7 +4,7 @@ abstract class configBase {
 }
 
 class configKey extends configBase {
-  constructor(keycode: string) {
+  constructor() {
     super();
   }
   public getDigital() {

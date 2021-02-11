@@ -1,7 +1,11 @@
-import { tlog } from "./tlog";
+import { HTMLParts } from "./htmlparts";
 
 const Game = (function () {
-  function start() {}
+  const p = new HTMLParts();
+  function start() {
+    p.paste("app");
+    p.paste("app");
+  }
   return {
     start: start,
   };

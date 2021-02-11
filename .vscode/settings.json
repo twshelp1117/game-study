@@ -3,8 +3,13 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true,
-      // "source.organizeImports": true,
-      // "source.fixAll": true
+      "source.organizeImports": true,
+      "source.fixAll": true
     },
-  }
+  },
+  "html.format.extraLiners": "",
+  "html.format.preserveNewLines": false,
+  "html.format.indentInnerHtml": true,
+  "html.format.wrapAttributes": "aligned-multiple",
+  "html.format.maxPreserveNewLines": 1,
 }
