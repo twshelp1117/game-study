@@ -32,7 +32,6 @@ const Game = (function () {
             // ベース描画
             buf.fillStyle = "#aaa";
             buf.fillRect(((i / 2) | 0) * 24 + 2, gamepad.index * 24 + 2, 20, 20);
-
             buf.fillStyle = "#000";
             buf.fillRect(((i / 2) | 0) * 24 + 12, gamepad.index * 24 + 10, v * 10, 4);
           } else {
