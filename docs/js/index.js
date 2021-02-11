@@ -16,7 +16,7 @@
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"HTMLParts\": () => /* binding */ HTMLParts\n/* harmony export */ });\nclass HTMLParts {\r\n    // constructor() {}\r\n    async paste(id = \"\") {\r\n        const file = await fetch(\"./html/game.html\");\r\n        const text = await file.text();\r\n        const d = document.createElement(\"div\");\r\n        d.innerHTML = text;\r\n        document.getElementById(id)?.appendChild(d) ?? document.body.appendChild(d);\r\n        return;\r\n    }\r\n}\r\n\n\n//# sourceURL=webpack://game-study/./src/htmlparts.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"HTMLParts\": () => /* binding */ HTMLParts\n/* harmony export */ });\nclass HTMLParts {\r\n    async paste(id = \"\") {\r\n        const file = await fetch(\"./html/game.html\");\r\n        const text = await file.text();\r\n        const d = document.createElement(\"div\");\r\n        d.innerHTML = text;\r\n        // d.childNodes.forEach((v) => {\r\n        //   console.log(v);\r\n        // });\r\n        // console.log(d.childElementCount);\r\n        document.getElementById(id)?.appendChild(d) ?? document.body.appendChild(d);\r\n        // document.createElement()\r\n        // return;\r\n    }\r\n}\r\n\n\n//# sourceURL=webpack://game-study/./src/htmlparts.ts?");
 
 /***/ }),
 
