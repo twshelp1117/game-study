@@ -33,16 +33,16 @@ export class CanvasScreen {
     this.clearBuffer();
     this.updateDisp();
   }
-  public get(select: "buffer" | "display") {
+  public get(select: "buffer" | "display"): CanvasRenderingContext2D {
     return select == "buffer" ? this.buffer : this.display;
   }
 
-  public clearBuffer() {
+  public clearBuffer(): void {
     this.buffer.resetTransform();
     this.buffer.fillStyle = "#fff";
     this.buffer.fillRect(0, 0, this.buffer.canvas.width, this.buffer.canvas.height);
   }
-  public updateDisp() {
+  public updateDisp(): void {
     // this.display.resetTransform();
     this.display.drawImage(this.buffer.canvas, 0, 0);
     // this.clearBuffer();
