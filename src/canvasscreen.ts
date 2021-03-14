@@ -18,11 +18,6 @@ export class CanvasScreen {
     this.display.canvas.width = width;
     this.display.canvas.height = height;
 
-    // ダブルクリックでフルスクリーン
-    this.display.canvas.addEventListener("dblclick", () => {
-      this.display.canvas.classList.toggle("full");
-    });
-
     // バッファ
     this.buffer = document.createElement("canvas").getContext("2d");
     this.buffer.canvas.width = width;
@@ -39,6 +34,7 @@ export class CanvasScreen {
 
   public clearBuffer(): void {
     this.buffer.resetTransform();
+    if (this.buffer.globalAlpha != 1) this.buffer.globalAlpha = 1;
     this.buffer.fillStyle = "#fff";
     this.buffer.fillRect(0, 0, this.buffer.canvas.width, this.buffer.canvas.height);
   }

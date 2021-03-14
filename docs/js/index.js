@@ -10,13 +10,23 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/htmlparts.ts":
-/*!**************************!*\
-  !*** ./src/htmlparts.ts ***!
-  \**************************/
+/***/ "./src/canvasscreen.ts":
+/*!*****************************!*\
+  !*** ./src/canvasscreen.ts ***!
+  \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"HTMLParts\": () => /* binding */ HTMLParts\n/* harmony export */ });\nclass HTMLParts {\r\n    async paste(id = \"\") {\r\n        const file = await fetch(\"./html/game.html\");\r\n        const text = await file.text();\r\n        const d = document.createElement(\"div\");\r\n        d.innerHTML = text;\r\n        // d.childNodes.forEach((v) => {\r\n        //   console.log(v);\r\n        // });\r\n        // console.log(d.childElementCount);\r\n        document.getElementById(id)?.appendChild(d) ?? document.body.appendChild(d);\r\n        // document.createElement()\r\n        // return;\r\n    }\r\n}\r\n\n\n//# sourceURL=webpack://game-study/./src/htmlparts.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"CanvasScreen\": () => (/* binding */ CanvasScreen)\n/* harmony export */ });\nclass CanvasScreen {\r\n    constructor(width, height, context) {\r\n        // コピーor生成\r\n        if (context) {\r\n            this.display = context;\r\n        }\r\n        else {\r\n            this.display = document.createElement(\"canvas\").getContext(\"2d\");\r\n            document.body.appendChild(this.display.canvas);\r\n        }\r\n        // チェック\r\n        width = width <= 0 ? 100 : width;\r\n        height = width <= 0 ? 100 : height;\r\n        // 設定\r\n        this.display.canvas.width = width;\r\n        this.display.canvas.height = height;\r\n        // バッファ\r\n        this.buffer = document.createElement(\"canvas\").getContext(\"2d\");\r\n        this.buffer.canvas.width = width;\r\n        this.buffer.canvas.height = height;\r\n        this.buffer.imageSmoothingEnabled = false;\r\n        // きれいにしておこうね\r\n        this.clearBuffer();\r\n        this.updateDisp();\r\n    }\r\n    get(select) {\r\n        return select == \"buffer\" ? this.buffer : this.display;\r\n    }\r\n    clearBuffer() {\r\n        this.buffer.resetTransform();\r\n        if (this.buffer.globalAlpha != 1)\r\n            this.buffer.globalAlpha = 1;\r\n        this.buffer.fillStyle = \"#fff\";\r\n        this.buffer.fillRect(0, 0, this.buffer.canvas.width, this.buffer.canvas.height);\r\n    }\r\n    updateDisp() {\r\n        // this.display.resetTransform();\r\n        this.display.drawImage(this.buffer.canvas, 0, 0);\r\n        // this.clearBuffer();\r\n    }\r\n}\r\n\n\n//# sourceURL=webpack://game-study/./src/canvasscreen.ts?");
+
+/***/ }),
+
+/***/ "./src/game.ts":
+/*!*********************!*\
+  !*** ./src/game.ts ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Game\": () => (/* binding */ Game)\n/* harmony export */ });\n/* harmony import */ var _canvasscreen__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./canvasscreen */ \"./src/canvasscreen.ts\");\n\r\nclass Game {\r\n    constructor(extScr) {\r\n        this.frameCount = 0;\r\n        this.canvasScreen = new _canvasscreen__WEBPACK_IMPORTED_MODULE_0__.CanvasScreen(Game.info.width, Game.info.height, extScr?.getContext(\"2d\"));\r\n    }\r\n    run() {\r\n        this.loop();\r\n    }\r\n    loop() {\r\n        const id = requestAnimationFrame(this.loop.bind(this));\r\n        try {\r\n            this.main();\r\n            this.frameCount++;\r\n        }\r\n        catch (error) {\r\n            console.error(error);\r\n            cancelAnimationFrame(id);\r\n        }\r\n    }\r\n    main() {\r\n        this.canvasScreen.clearBuffer();\r\n        this.canvasScreen.updateDisp();\r\n    }\r\n}\r\nGame.info = {\r\n    width: 240,\r\n    height: 320,\r\n};\r\n\n\n//# sourceURL=webpack://game-study/./src/game.ts?");
 
 /***/ }),
 
@@ -26,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _htmlparts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./htmlparts */ \"./src/htmlparts.ts\");\n\r\nconst Game = (function () {\r\n    const p = new _htmlparts__WEBPACK_IMPORTED_MODULE_0__.HTMLParts();\r\n    function start() {\r\n        p.paste(\"app\");\r\n        p.paste(\"app\");\r\n    }\r\n    return {\r\n        start: start,\r\n    };\r\n})();\r\nwindow.addEventListener(\"load\", Game.start);\r\n\n\n//# sourceURL=webpack://game-study/./src/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ \"./src/game.ts\");\n\r\nwindow.addEventListener(\"load\", () => {\r\n    const canvas = document.querySelector(\".game\");\r\n    const game = new _game__WEBPACK_IMPORTED_MODULE_0__.Game(canvas);\r\n    // ダブルクリックでフルスクリーン\r\n    canvas?.addEventListener(\"dblclick\", () => {\r\n        canvas.classList.toggle(\"full\");\r\n    });\r\n    game.run();\r\n});\r\n\n\n//# sourceURL=webpack://game-study/./src/index.ts?");
 
 /***/ })
 
@@ -38,8 +48,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _htm
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
-/******/ 		if(__webpack_module_cache__[moduleId]) {
-/******/ 			return __webpack_module_cache__[moduleId].exports;
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
@@ -70,7 +81,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _htm
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
@@ -85,9 +96,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _htm
 /******/ 	})();
 /******/ 	
 /************************************************************************/
+/******/ 	
 /******/ 	// startup
-/******/ 	// Load entry module
-/******/ 	__webpack_require__("./src/index.ts");
-/******/ 	// This entry module used 'exports' so it can't be inlined
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.ts");
+/******/ 	
 /******/ })()
 ;
