@@ -9,7 +9,6 @@ body {
   border: none;
   outline: 0;
   object-fit: contain;
-  vertical-align: bottom;
 }
 
 .full {
