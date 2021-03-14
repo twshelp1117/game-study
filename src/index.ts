@@ -1,12 +1,10 @@
-import { HTMLParts } from "./htmlparts";
-
 const Game = (function () {
-  const p = new HTMLParts();
-  function start() {
-    p.paste("app");
-    p.paste("app");
+  function setMute(b: boolean) {
+    return b;
   }
+  function start() {}
   return {
+    setMute: setMute,
     start: start,
   };
 })();
