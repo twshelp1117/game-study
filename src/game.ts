@@ -9,6 +9,20 @@ export class Game {
   private frameCount = 0;
   constructor(extScr?: HTMLCanvasElement) {
     this.canvasScreen = new CanvasScreen(Game.info.width, Game.info.height, extScr?.getContext("2d"));
+    window.addEventListener("focus", (e) => {
+      console.log(e.type);
+    });
+    window.addEventListener("blur", (e) => {
+      console.log(e.type);
+    });
+    window.addEventListener("keydown", (e) => {
+      console.log(e);
+      e.preventDefault();
+    });
+    window.addEventListener("keyup", (e) => {
+      console.log(e);
+      e.preventDefault();
+    });
   }
   public run(): void {
     this.loop();

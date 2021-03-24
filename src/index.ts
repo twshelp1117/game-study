@@ -4,10 +4,12 @@ window.addEventListener("load", () => {
   const canvas = document.querySelector(".game");
   const game = new Game(<HTMLCanvasElement>canvas);
 
+  canvas.classList.add("full");
+
   // ダブルクリックでフルスクリーン
-  canvas?.addEventListener("dblclick", () => {
-    canvas.classList.toggle("full");
-  });
+  // canvas?.addEventListener("dblclick", () => {
+  //   canvas.classList.toggle("full");
+  // });
 
   game.run();
 });
