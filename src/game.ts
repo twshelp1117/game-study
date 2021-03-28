@@ -1,4 +1,5 @@
 import { CanvasScreen } from "./canvasscreen";
+import { InputAIO } from "./input";
 
 export class Game {
   public static info = {
@@ -7,22 +8,11 @@ export class Game {
   } as const;
   private canvasScreen: CanvasScreen;
   private frameCount = 0;
+  private input: InputAIO;
+
   constructor(extScr?: HTMLCanvasElement) {
     this.canvasScreen = new CanvasScreen(Game.info.width, Game.info.height, extScr?.getContext("2d"));
-    window.addEventListener("focus", (e) => {
-      console.log(e.type);
-    });
-    window.addEventListener("blur", (e) => {
-      console.log(e.type);
-    });
-    window.addEventListener("keydown", (e) => {
-      console.log(e);
-      e.preventDefault();
-    });
-    window.addEventListener("keyup", (e) => {
-      console.log(e);
-      e.preventDefault();
-    });
+    this.input = new InputAIO();
   }
   public run(): void {
     this.loop();

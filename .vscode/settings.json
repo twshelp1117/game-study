@@ -12,5 +12,4 @@
   "html.format.indentInnerHtml": true,
   "html.format.wrapAttributes": "aligned-multiple",
   "html.format.maxPreserveNewLines": 1,
-  "liveServer.settings.port": 5501,
 }
