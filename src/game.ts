@@ -7,7 +7,6 @@ export class Game {
     height: 320,
   } as const;
   private canvasScreen: CanvasScreen;
-  private frameCount = 0;
   private input: InputAIO;
 
   constructor(extScr?: HTMLCanvasElement) {
@@ -21,7 +20,6 @@ export class Game {
     const id = requestAnimationFrame(this.loop.bind(this));
     try {
       this.main();
-      this.frameCount++;
     } catch (error) {
       console.error(error);
       cancelAnimationFrame(id);

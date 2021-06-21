@@ -1,10 +1,10 @@
 module.exports = {
   mode: "development",
   target: "node-webkit",
-  entry: `${__dirname}/src/index.ts`,
+  entry: `${__dirname}/src/main.ts`,
   output: {
     path: `${__dirname}/docs/js`,
-    filename: "index.js",
+    filename: "main.js",
   },
   module: {
     rules: [

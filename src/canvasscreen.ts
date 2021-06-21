@@ -1,18 +1,13 @@
 export class CanvasScreen {
   private display: CanvasRenderingContext2D;
   private buffer: CanvasRenderingContext2D;
-  constructor(width: number, height: number, context?: CanvasRenderingContext2D) {
+  constructor(width: number, height: number, context: CanvasRenderingContext2D) {
     // コピーor生成
-    if (context) {
-      this.display = context;
-    } else {
-      this.display = document.createElement("canvas").getContext("2d");
-      document.body.appendChild(this.display.canvas);
-    }
+    this.display = context;
 
     // チェック
-    width = width <= 0 ? 100 : width;
-    height = width <= 0 ? 100 : height;
+    width = width <= 0 ? 1 : width;
+    height = height <= 0 ? 1 : height;
 
     // 設定
     this.display.canvas.width = width;
