@@ -9,8 +9,8 @@ export class Game {
   private canvasScreen: CanvasScreen;
   private input: InputAIO;
 
-  constructor(extScr?: HTMLCanvasElement) {
-    this.canvasScreen = new CanvasScreen(Game.info.width, Game.info.height, extScr?.getContext("2d"));
+  constructor(extScr: HTMLCanvasElement) {
+    this.canvasScreen = new CanvasScreen(Game.info.width, Game.info.height, extScr.getContext("2d"));
     this.input = new InputAIO();
   }
   public run(): void {
@@ -18,11 +18,13 @@ export class Game {
   }
   private loop(): void {
     const id = requestAnimationFrame(this.loop.bind(this));
-    try {
-      this.main();
-    } catch (error) {
-      console.error(error);
-      cancelAnimationFrame(id);
+    if (this.input.IsFocus) {
+      try {
+        this.main();
+      } catch (error) {
+        console.error(error);
+        cancelAnimationFrame(id);
+      }
     }
   }
   private main(): void {
